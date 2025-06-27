@@ -1,13 +1,13 @@
 {
   "resources": {
     "Script": {
-      "$ref": "types.json#/8"
-    },
-    "Wait": {
       "$ref": "types.json#/10"
     },
-    "Assert": {
+    "Wait": {
       "$ref": "types.json#/12"
+    },
+    "Assert": {
+      "$ref": "types.json#/14"
     }
   },
   "resourceFunctions": {},

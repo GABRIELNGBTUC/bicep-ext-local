@@ -28,6 +28,30 @@ public static class TypeGenerator
         var stringType = factory.Create(() => new StringType());
         var intType = factory.Create(() => new IntegerType());
         var boolType = factory.Create(() => new BooleanType());
+        var functionOutputType = factory.Create(() =>new ObjectType("dataObject", new Dictionary<string, ObjectTypeProperty>()
+        {
+            {
+                "data",
+                new ObjectTypeProperty(
+                    factory.GetReference(stringType),
+                    ObjectTypePropertyFlags.None,
+                    "Some data property"
+                )
+            }
+        }, null));
+
+        var functionType = factory.Create(
+            () => new FunctionType(
+                [
+                    new FunctionParameter("name", factory.GetReference(stringType),
+                    "Some name parameter")
+                ]
+                , factory.GetReference(functionOutputType)
+        ));
+
+        ResourceTypeFunction resourceTypeFunction = new(
+            factory.GetReference(functionType)
+            , "desc");
 
         var bashOptions = factory.Create(() => new ObjectType("BashScript", new Dictionary<string, ObjectTypeProperty>
         {
@@ -69,7 +93,13 @@ public static class TypeGenerator
             null,
             factory.GetReference(waitBodyType),
             ResourceFlags.None,
-            null));
+            new Dictionary<string, ResourceTypeFunction>()
+            {
+                {
+                    "getData",
+                    resourceTypeFunction
+                }
+            }));
 
         var assertBodyType = factory.Create(() => new ObjectType("body", new Dictionary<string, ObjectTypeProperty>
         {

@@ -15,6 +15,36 @@
     "$type": "BooleanType"
   },
   {
+    "$type": "ObjectType",
+    "name": "dataObject",
+    "properties": {
+      "data": {
+        "type": {
+          "$ref": "#/0"
+        },
+        "flags": 0,
+        "description": "Some data property"
+      }
+    },
+    "additionalProperties": null,
+    "sensitive": null
+  },
+  {
+    "$type": "FunctionType",
+    "parameters": [
+      {
+        "name": "name",
+        "type": {
+          "$ref": "#/0"
+        },
+        "description": "Some name parameter"
+      }
+    ],
+    "output": {
+      "$ref": "#/3"
+    }
+  },
+  {
     "$type": "StringLiteralType",
     "value": "bash"
   },
@@ -24,7 +54,7 @@
     "properties": {
       "type": {
         "type": {
-          "$ref": "#/3"
+          "$ref": "#/5"
         },
         "flags": 0,
         "description": null
@@ -43,7 +73,7 @@
     "properties": {
       "type": {
         "type": {
-          "$ref": "#/5"
+          "$ref": "#/7"
         },
         "flags": 0,
         "description": null
@@ -88,10 +118,10 @@
     },
     "elements": {
       "bash": {
-        "$ref": "#/4"
+        "$ref": "#/6"
       },
       "powershell": {
-        "$ref": "#/6"
+        "$ref": "#/8"
       }
     }
   },
@@ -101,7 +131,7 @@
     "scopeType": 0,
     "readOnlyScopes": null,
     "body": {
-      "$ref": "#/7"
+      "$ref": "#/9"
     },
     "flags": 0,
     "functions": null
@@ -127,10 +157,17 @@
     "scopeType": 0,
     "readOnlyScopes": null,
     "body": {
-      "$ref": "#/9"
+      "$ref": "#/11"
     },
     "flags": 0,
-    "functions": null
+    "functions": {
+      "getData": {
+        "type": {
+          "$ref": "#/4"
+        },
+        "description": "desc"
+      }
+    }
   },
   {
     "$type": "ObjectType",
@@ -160,7 +197,7 @@
     "scopeType": 0,
     "readOnlyScopes": null,
     "body": {
-      "$ref": "#/11"
+      "$ref": "#/13"
     },
     "flags": 0,
     "functions": null
